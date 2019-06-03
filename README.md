@@ -3,14 +3,14 @@ An ncm2 source that combines vim-go's gopls integration and ultisnip to give sig
 
 ## Demo
 
-<gif>
+![](demo.gif)
 
 ## Requirements
 
-1. fatih/vim-go
-2. SirVer/ultisnips
+1. [fatih/vim-go](https://github.com/fatih/vim-go)
+2. [SirVer/ultisnips](https://github.com/SirVer/ultisnips)
 
-UltiSnips Configuration:
+**UltiSnips Configuration**
 
 ```
     " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
