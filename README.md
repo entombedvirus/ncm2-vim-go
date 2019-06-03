@@ -9,6 +9,7 @@ An ncm2 source that combines vim-go's gopls integration and ultisnip to give sig
 
 1. [fatih/vim-go](https://github.com/fatih/vim-go)
 2. [SirVer/ultisnips](https://github.com/SirVer/ultisnips)
+3. [ncm2/ncm2-ultisnips](https://github.com/ncm2/ncm2-ultisnips)
 
 **UltiSnips Configuration**
 
