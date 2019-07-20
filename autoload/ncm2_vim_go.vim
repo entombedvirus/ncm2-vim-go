@@ -4,7 +4,8 @@ endif
 let s:loaded = 1
 
 function! ncm2_vim_go#on_complete(ctx) abort
-    call go#lsp#Completion(a:ctx.filepath, line('.'), col('.'), function('s:modify_completion_items', [a:ctx]))
+    let [l:line, l:col] = go#lsp#lsp#Position()
+    call go#lsp#Completion(a:ctx.filepath, l:line, l:col, function('s:modify_completion_items', [a:ctx]))
 endfunction
 
 function! s:modify_completion_items(ctx, start, items) abort
@@ -12,9 +13,9 @@ function! s:modify_completion_items(ctx, start, items) abort
 endfunction
 
 let s:func_patterns = [
-        \ '\vfunc .{-}\((.*)\) \(.*\)$',
-        \ '\vfunc .{-}\((.*)\) .*$',
-        \ '\vfunc .{-}\((.*)\)$',
+        \ '\vfunc\((.*)\) \(.*\)$',
+        \ '\vfunc\((.*)\) .*$',
+        \ '\vfunc\((.*)\)$',
         \ ]
 
 function! s:add_snippets_for_funcs(idx, item) abort
