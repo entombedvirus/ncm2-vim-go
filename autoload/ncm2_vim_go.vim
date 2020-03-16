@@ -13,9 +13,9 @@ function! s:modify_completion_items(ctx, start, items) abort
 endfunction
 
 let s:func_patterns = [
-        \ '\vfunc\((.*)\) \(.*\)$',
-        \ '\vfunc\((.*)\) .*$',
-        \ '\vfunc\((.*)\)$',
+        \ '\vfunc\((.*)\) \(.*\)(\n|$)',
+        \ '\vfunc\((.*)\) .*(\n|$)',
+        \ '\vfunc\((.*)\)(\n|$)',
         \ ]
 
 function! s:add_snippets_for_funcs(idx, item) abort
@@ -44,10 +44,8 @@ endfunction
 
 " param: ' c string'
 function! s:render_snippet(i, param)
-    let l:parts = split(trim(a:param), ' ')
-    let l:pname = parts[0]
-    if len(l:pname) == 0
-        return printf('${%d}', a:i+1)
-    endif
-    return printf('${%d:%s}', a:i+1, l:pname)
+    " the escaping is weird; {} needs to be turned to {\} to pass thru
+    " ncm2_ultisnips and come out as \{\}
+    let l:snip_argument = substitute(trim(a:param), '{}', '{\\}', 'g')
+    return printf('${%d:%s}', a:i+1, l:snip_argument)
 endfunction
